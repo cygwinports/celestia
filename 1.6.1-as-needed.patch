@@ -1,0 +1,20 @@
+--- origsrc/celestia-1.6.1/src/celestia/Makefile.am	2011-06-05 11:11:13.000000000 -0500
++++ src/celestia-1.6.1/src/celestia/Makefile.am	2012-02-15 23:10:03.522868800 -0600
+@@ -14,7 +14,7 @@
+ 
+ if ENABLE_GTK
+ SUBDIRS += gtk
+-celestiaGTKLIBS = $(GTK_LIBS) gtk/libgtkgui.a
++celestiaGTKLIBS = gtk/libgtkgui.a $(GTK_LIBS)
+ endif
+ 
+ COMMONSOURCES = \
+@@ -88,6 +88,8 @@
+ 	../cel3ds/libcel3ds.a \
+ 	../celmath/libcelmath.a \
+ 	../celutil/libcelutil.a \
++	$(INTLLIBS) \
++	$(GL_LIBS) \
+ 	$(SPICE_LIBS)
+ 
+ noinst_HEADERS = $(wildcard *.h)

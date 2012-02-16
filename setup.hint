@@ -1,0 +1,7 @@
+category: Science
+requires: libcairo2 libgcc1 libgdk_pixbuf2.0_0 libGL1 libglib2.0_0 libGLU1 libgtk2.0_0 libgtkglext1.0_0 libintl8 libjpeg8 libogg0 libpango1.0_0 libpng14 libstdc++6 libtheora0 lua
+sdesc: "Space simulator"
+ldesc: "Celestia is an application for real-time 3D visualization of 
+space, with a detailed model of the solar system, over 100,000 stars, 
+more than 10,000 galaxies, and an extension mechanism for adding more 
+objects."

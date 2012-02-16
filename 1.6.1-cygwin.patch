@@ -1,0 +1,40 @@
+--- origsrc/celestia-1.6.1/src/celengine/astro.cpp	2011-06-05 11:11:09.000000000 -0500
++++ src/celestia-1.6.1/src/celengine/astro.cpp	2012-02-15 21:28:50.630519200 -0600
+@@ -106,7 +106,7 @@ static const LeapSecondRecord LeapSecond
+ };
+ 
+ 
+-#if !defined(__GNUC__) || defined(_WIN32)
++#if !defined(__GNUC__) || defined(_WIN32) || defined(__CYGWIN__)
+ static const char* MonthAbbrList[12] =
+ { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+ #endif
+@@ -511,7 +511,7 @@ const char* astro::Date::toCStr(Format f
+ 
+     // MinGW's libraries don't have the tm_gmtoff and tm_zone fields for
+     // struct tm.
+-#if defined(__GNUC__) && !defined(_WIN32)
++#if defined(__GNUC__) && !defined(_WIN32) && !defined(__CYGWIN__)
+     struct tm cal_time;
+     memset(&cal_time, 0, sizeof(cal_time));
+     cal_time.tm_year = year-1900;
+@@ -807,7 +807,7 @@ astro::TDBtoLocal(double tdb)
+             d.minute = localt->tm_min;
+             d.seconds = (int) localt->tm_sec;
+             d.wday = localt->tm_wday;
+-        #if defined(__GNUC__) && !defined(_WIN32)
++        #if defined(__GNUC__) && !defined(_WIN32) && !defined(__CYGWIN__)
+             d.utc_offset = localt->tm_gmtoff;
+             d.tzname = localt->tm_zone;
+         #else
+--- origsrc/celestia-1.6.1/src/celestia/gtk/common.cpp	2011-06-05 11:11:10.000000000 -0500
++++ src/celestia-1.6.1/src/celestia/gtk/common.cpp	2012-02-15 21:31:06.790307100 -0600
+@@ -25,7 +25,7 @@
+ /* Returns the offset of the timezone at date */
+ gint tzOffsetAtDate(astro::Date date)
+ {
+-	#ifdef WIN32
++	#if defined(WIN32) || defined(__CYGWIN__)
+ 	/* This does not correctly handle DST. Unfortunately, no way to find
+ 	 * out what UTC offset is at specified date in Windows */
+ 	return -timezone;

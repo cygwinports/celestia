@@ -1,0 +1,9 @@
+--- origsrc/celestia-1.6.1/src/celestia/Makefile.am	2011-06-05 11:11:13.000000000 -0500
++++ src/celestia-1.6.1/src/celestia/Makefile.am	2012-02-15 23:10:03.522868800 -0600
+@@ -94,5 +94,5 @@
+ noinst_DATA = ../../celestia
+ CLEANFILES = ../../celestia
+ 
+-../../celestia: celestia
++../../celestia: celestia$(EXEEXT)
+ 	(cd ../..; ln -s src/celestia/celestia)
