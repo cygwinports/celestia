@@ -1,0 +1,20 @@
+NAME="celestia"
+VERSION=1.6.1
+RELEASE=2
+CATEGORY="Science"
+SUMMARY="Space simulator"
+DESCRIPTION="Celestia is an application for real-time 3D visualization of
+space, with a detailed model of the solar system, over 100,000 stars, more
+than 10,000 galaxies, and an extension mechanism for adding more objects."
+HOMEPAGE="http://celestia.sourceforge.net/"
+SRC_URI="mirror://sourceforge/celestia/${P}.tar.gz"
+
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/celestia.git/plain/celestia-1.6.1-zlib.patch
+	1.6.1-as-needed.patch
+	1.6.1-cygwin.patch
+	1.6.1-exeext.patch
+	1.6.1-vpath.patch
+"
+
+CYGCONF_ARGS="--with-gtk"
