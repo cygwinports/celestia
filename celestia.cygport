@@ -1,6 +1,6 @@
 NAME="celestia"
 VERSION=1.6.1
-RELEASE=2
+RELEASE=3
 CATEGORY="Science"
 SUMMARY="Space simulator"
 DESCRIPTION="Celestia is an application for real-time 3D visualization of
@@ -11,11 +11,11 @@ SRC_URI="mirror://sourceforge/celestia/${P}.tar.gz"
 
 PATCH_URI="
 	http://pkgs.fedoraproject.org/cgit/celestia.git/plain/celestia-1.6.1-zlib.patch
+	http://pkgs.fedoraproject.org/cgit/celestia.git/plain/celestia-1.6.1-gcc47.patch
+	http://pkgs.fedoraproject.org/cgit/celestia.git/plain/celestia-1.6.1-gcc48.patch
 	1.6.1-as-needed.patch
-	1.6.1-cygwin.patch
 	1.6.1-exeext.patch
 	1.6.1-vpath.patch
-	1.6.1-Werror-implicit.patch
 "
 
 CYGCONF_ARGS="--with-gtk"
