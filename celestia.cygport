@@ -1,6 +1,6 @@
 NAME="celestia"
 VERSION=1.6.1
-RELEASE=4
+RELEASE=5
 CATEGORY="Science"
 SUMMARY="Space simulator"
 DESCRIPTION="Celestia is an application for real-time 3D visualization of
@@ -10,14 +10,22 @@ HOMEPAGE="http://celestia.sourceforge.net/"
 SRC_URI="mirror://sourceforge/celestia/${P}.tar.gz"
 
 PATCH_URI="
-	http://pkgs.fedoraproject.org/cgit/celestia.git/plain/celestia-1.6.1-zlib.patch
-	http://pkgs.fedoraproject.org/cgit/celestia.git/plain/celestia-1.6.1-gcc47.patch
-	http://pkgs.fedoraproject.org/cgit/celestia.git/plain/celestia-1.6.1-gcc48.patch
-	http://pkgs.fedoraproject.org/cgit/celestia.git/plain/celestia-1.6.1-lua-5.2.patch
-	http://pkgs.fedoraproject.org/cgit/celestia.git/plain/celestia-lua-52-fix.patch
+	https://src.fedoraproject.org/rpms/celestia/raw/master/f/celestia-1.6.1-zlib.patch
+	https://src.fedoraproject.org/rpms/celestia/raw/master/f/celestia-1.6.1-gcc47.patch
+	https://src.fedoraproject.org/rpms/celestia/raw/master/f/celestia-1.6.1-gcc48.patch
+	https://src.fedoraproject.org/rpms/celestia/raw/master/f/celestia-1.6.1-lua-5.2.patch
+	https://src.fedoraproject.org/rpms/celestia/raw/master/f/celestia-lua-52-fix.patch
 	1.6.1-as-needed.patch
 	1.6.1-exeext.patch
 	1.6.1-vpath.patch
 "
 
 CYGCONF_ARGS="--with-gtk"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	# only KDE separates Science from Education
+	desktop-file-edit --add-category=Education --remove-key=Version ${D}/usr/share/applications/*.desktop
+}
